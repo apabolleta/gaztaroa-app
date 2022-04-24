@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file.
 
 
 
+## [4.0.0] - 2022-04-24
+
+Stack Navigation.
+
+### Added
+
+- [Navigation](https://reactnavigation.org/docs/getting-started) feature.
+- [React Navigation Stack](https://reactnavigation.org/docs/stack-navigator/)
+
 ## [3.0.0] - 2022-04-24
 
 Use functional components in React Native.
