@@ -1,28 +1,50 @@
 import React, { Component } from 'react';
 import Calendar from './CalendarComponent';
-import { TRIPS } from '../common/trips';
 import TripDetails from './TripDetailsComponent';
 import { View } from 'react-native';
+import Constants from 'expo-constants';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+function CalendarNavigator() {
+    return (
+        <Stack.Navigator
+            initialRouteName='Calendar'
+            screenOptions={{
+                headerMode: 'float',
+                headerTintColor: '#fff',
+                headerStyle: { backgroundColor: '#015afc' },
+                headerTitleStyle: { color: '#fff' },
+            }}
+        >
+            <Stack.Screen
+                name='Calendar'
+                component={Calendar}
+                options={{
+                    title: 'Calendario Gaztaroa'
+                }}
+            />
+            <Stack.Screen
+                name='TripDetails'
+                component={TripDetails}
+                options={{
+                    title: 'Trip Details'
+                }}
+            />
+        </Stack.Navigator>
+    );
+}
 
 class Basecamp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            trips: TRIPS,
-            selectTrip: null
-        };
-    }
-
-    onSelectionTrip(tripId) {
-        this.setState({selectTrip: tripId});
-    }
-
     render() {
         return (
-            <View>
-                <TripDetails trip={this.state.trips.filter((trip) => trip.id === this.state.selectTrip)[0]} />
-                <Calendar trips={this.state.trips} onPress={(tripId) => this.onSelectionTrip(tripId)} />
-            </View>
+            <NavigationContainer>
+                <View style={{flex:1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
+                    <CalendarNavigator />
+                </View>
+            </NavigationContainer>
         );
     }
 }

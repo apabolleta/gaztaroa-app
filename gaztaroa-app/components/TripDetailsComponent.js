@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
+import { TRIPS } from '../common/trips';
 
 function RenderTrip(props) {
     const trip = props.trip;
@@ -23,10 +24,22 @@ function RenderTrip(props) {
     }
 }
 
-function TripDetails(props) {
-    return (
-        <RenderTrip trip={props.trip} />
-    );
+class TripDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            trips: TRIPS
+        };
+    }
+
+    render() {
+        const { tripId } = this.props.route.params;
+        return (
+            <RenderTrip
+                trip={this.state.trips[+tripId]}
+            />
+        );
+    }
 }
 
 export default TripDetails;
