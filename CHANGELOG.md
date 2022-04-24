@@ -6,6 +6,17 @@ All notable changes to this project will be documented in this file.
 
 
 
+## [3.0.0] - 2022-04-24
+
+Use functional components in React Native.
+
+### Added
+
+- `RenderTrip` component
+    - [Card](https://reactnativeelements.com/docs/3.4.2/card)
+- `TripDetails` component
+- Allow trip selection on main view. When item selected, item details are displayed on top of the view.
+
 ## [2.0.0] - 2022-04-24
 
 Create React Native components.
