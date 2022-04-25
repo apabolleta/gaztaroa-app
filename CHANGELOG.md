@@ -6,6 +6,20 @@ All notable changes to this project will be documented in this file.
 
 
 
+## [6.0.0] - 2022-04-25
+
+Component navigation.
+
+### Added
+- `Contact` component
+- `About` component
+    - [ScrollView](https://reactnative.dev/docs/scrollview)
+
+### Changed
+- New component screens added to Drawer Navigator
+- Home component items layout
+    - [StyleSheet](https://reactnative.dev/docs/stylesheet)
+
 ## [5.0.0] - 2022-04-24
 
 Drawer Navigation.
