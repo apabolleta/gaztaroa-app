@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View } from 'react-native';
+import { Text, ScrollView, View, StyleSheet } from 'react-native';
 import { Card } from 'react-native-elements';
 import { TRIPS } from '../common/trips';
 import { HEADERS } from '../common/headers';
 import { ACTIVITIES } from '../common/activities';
+
+const styles = StyleSheet.create({
+    title: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        color: 'chocolate',
+        fontSize: 34,
+    }
+});
 
 function RenderItem(props) {
     const item = props.item;
@@ -11,9 +24,10 @@ function RenderItem(props) {
     if (item != null) {
         return(
             <Card>
-                <Card.Title>{item.name}</Card.Title>
                 <Card.Divider/>
-                <Card.Image source={require('./img/40Años.png')}></Card.Image>
+                <Card.Image source={require('./img/40Años.png')}>
+                    <Card.Title style={styles.title}>{item.name}</Card.Title>
+                </Card.Image>
                 <Text style={{margin: 20}}>
                     {item.description}
                 </Text>
