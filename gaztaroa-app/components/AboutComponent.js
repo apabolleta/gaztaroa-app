@@ -48,7 +48,7 @@ class About extends Component {
                 <Card>
                     <Card.Title>Actividades y recursos</Card.Title>
                     <Card.Divider/>
-                        {ACTIVITIES.map((item, index) => renderActivityItem(item, index))}
+                    {ACTIVITIES.map((item, index) => renderActivityItem(item, index))}
                 </Card>
             </ScrollView>
         );
