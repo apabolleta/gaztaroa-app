@@ -6,6 +6,20 @@ All notable changes to this project will be documented in this file.
 
 
 
+## [7.0.0] - 2022-04-27
+
+Buttons and icons.
+
+### Added
+- Added comments to trip details screen
+- Favourite trip selection feature
+    - [Icon](https://reactnativeelements.com/docs/icon/)
+
+### Changed
+- Drawer Navigator layout
+- Drawer Navigator toggler icon
+    - [Drawer Actions](https://reactnavigation.org/docs/drawer-actions/)
+
 ## [6.0.0] - 2022-04-25
 
 Component navigation.
