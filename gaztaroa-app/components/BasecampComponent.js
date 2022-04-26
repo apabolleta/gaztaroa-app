@@ -3,7 +3,7 @@ import Calendar from './CalendarComponent';
 import TripDetails from './TripDetailsComponent';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import Constants from 'expo-constants';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './HomeComponent';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
@@ -15,7 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-function CalendarNavigator() {
+function CalendarNavigator({navigation}) {
     return (
         <Stack.Navigator
             initialRouteName='Calendar'
@@ -30,7 +30,8 @@ function CalendarNavigator() {
                 name='Calendar'
                 component={Calendar}
                 options={{
-                    title: 'Calendario Gaztaroa'
+                    title: 'Calendario Gaztaroa',
+                    headerLeft: () => (<Icon name='menu' size={28} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />),
                 }}
             />
             <Stack.Screen
@@ -44,7 +45,7 @@ function CalendarNavigator() {
     );
 }
 
-function HomeNavigator() {
+function HomeNavigator({navigation}) {
     return (
         <Stack.Navigator
             initialRouteName='Home'
@@ -53,6 +54,7 @@ function HomeNavigator() {
                 headerTintColor: '#fff',
                 headerStyle: { backgroundColor: '#015afc' },
                 headerTitleStyle: { color: '#fff' },
+                headerLeft: () => (<Icon name='menu' size={28} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />),
             }}
         >
             <Stack.Screen
@@ -66,7 +68,7 @@ function HomeNavigator() {
     );
 }
 
-function AboutNavigator() {
+function AboutNavigator({navigation}) {
     return (
         <Stack.Navigator
             initialRouteName='About'
@@ -75,6 +77,7 @@ function AboutNavigator() {
                 headerTintColor: '#fff',
                 headerStyle: { backgroundColor: '#015afc' },
                 headerTitleStyle: { color: '#fff' },
+                headerLeft: () => (<Icon name='menu' size={28} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />),
             }}
         >
             <Stack.Screen
@@ -88,7 +91,7 @@ function AboutNavigator() {
     );
 }
 
-function ContactNavigator() {
+function ContactNavigator({navigation}) {
     return (
         <Stack.Navigator
             initialRouteName='Contact'
@@ -97,6 +100,7 @@ function ContactNavigator() {
                 headerTintColor: '#fff',
                 headerStyle: { backgroundColor: '#015afc' },
                 headerTitleStyle: { color: '#fff' },
+                headerLeft: () => (<Icon name='menu' size={28} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />),
             }}
         >
             <Stack.Screen
