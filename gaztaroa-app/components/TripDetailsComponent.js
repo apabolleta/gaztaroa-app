@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { TRIPS } from '../common/trips';
 import { COMMENTS } from '../common/comments';
@@ -36,7 +36,7 @@ function RenderTrip(props) {
 function RenderComments(props) {
     const comments = props.comments;
 
-    const renderCommentItem = ({item, index}) => {
+    const renderCommentItem = (item, index) => {
         return (
             <View key={index} style={{margin: 10}}>
                 <Text style={{fontSize: 14}}>{item.comment}</Text>
@@ -50,11 +50,7 @@ function RenderComments(props) {
         <Card>
             <Card.Title>Comentarios</Card.Title>
             <Card.Divider/>
-            <FlatList
-                data={comments}
-                renderItem={renderCommentItem}
-                keyExtractor={item => item.id.toString()}
-            />
+            {comments.map((item, index) => renderCommentItem(item, index))}
         </Card>
     );
 }
