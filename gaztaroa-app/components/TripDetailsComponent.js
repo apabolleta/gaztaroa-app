@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Icon } from 'react-native-elements';
 import { TRIPS } from '../common/trips';
 import { COMMENTS } from '../common/comments';
 
@@ -16,6 +16,14 @@ function RenderTrip(props) {
                 <Text style={{margin: 20}}>
                     {trip.description}
                 </Text>
+                <Icon
+                    raised
+                    reverse
+                    name={props.favorite ? 'heart' : 'heart-o'}
+                    type='font-awesome'
+                    color='#f50'
+                    onPress={() => props.favorite ? console.log('La excursión ya se encuentra entre las favoritas') : props.onPress()}
+                />
             </Card>
         );
     } else {
@@ -56,8 +64,13 @@ class TripDetails extends Component {
         super(props);
         this.state = {
             trips: TRIPS,
-            comments: COMMENTS
+            comments: COMMENTS,
+            favorites: []
         };
+    }
+
+    markFavorite(tripId) {
+        this.setState({favorites: this.state.favorites.concat(tripId)});
     }
 
     render() {
@@ -66,6 +79,8 @@ class TripDetails extends Component {
             <ScrollView>
                 <RenderTrip
                     trip={this.state.trips[+tripId]}
+                    favorite={this.state.favorites.some(el => el === tripId)}
+                    onPress={() => this.markFavorite(tripId)}
                 />
                 <RenderComments
                     comments={this.state.comments.filter((comment) => comment.tripId === tripId)}
