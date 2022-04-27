@@ -3,6 +3,7 @@ import { Text, View, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { TRIPS } from '../common/trips';
 import { COMMENTS } from '../common/comments';
+import { baseUrl } from '../common/common';
 
 function RenderTrip(props) {
     const trip = props.trip;
@@ -12,7 +13,7 @@ function RenderTrip(props) {
             <Card>
                 <Card.Title>{trip.name}</Card.Title>
                 <Card.Divider/>
-                <Card.Image source={require('./img/40Años.png')}></Card.Image>
+                <Card.Image source={{uri: baseUrl + trip.img}}></Card.Image>
                 <Text style={{margin: 20}}>
                     {trip.description}
                 </Text>

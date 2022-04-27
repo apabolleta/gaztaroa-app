@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, ListItem, Avatar } from 'react-native-elements';
 import { ScrollView, Text } from 'react-native';
 import { ACTIVITIES } from '../common/activities';
+import { baseUrl } from '../common/common';
 
 function History() {
     return (
@@ -33,7 +34,7 @@ class About extends Component {
                     key={index}
                     bottomDivider
                 >
-                    <Avatar source={require('./img/40Años.png')} />
+                    <Avatar source={{uri: baseUrl + item.img}} />
                     <ListItem.Content>
                         <ListItem.Title>{item.name}</ListItem.Title>
                         <ListItem.Subtitle>{item.description}</ListItem.Subtitle>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ListItem, Avatar } from 'react-native-elements';
 import { SafeAreaView, FlatList } from 'react-native';
 import { TRIPS } from '../common/trips';
+import { baseUrl } from '../common/common';
 
 class Calendar extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class Calendar extends Component {
                     onPress={() => navigate('TripDetails', {tripId: item.id})}
                     bottomDivider
                 >
-                    <Avatar source={require('./img/40Años.png')} />
+                    <Avatar source={{uri: baseUrl + item.img}} />
                     <ListItem.Content>
                         <ListItem.Title>{item.name}</ListItem.Title>
                         <ListItem.Subtitle>{item.description}</ListItem.Subtitle>

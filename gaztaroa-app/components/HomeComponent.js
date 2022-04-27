@@ -4,6 +4,7 @@ import { Card } from 'react-native-elements';
 import { TRIPS } from '../common/trips';
 import { HEADERS } from '../common/headers';
 import { ACTIVITIES } from '../common/activities';
+import { baseUrl } from '../common/common';
 
 const styles = StyleSheet.create({
     title: {
@@ -25,7 +26,7 @@ function RenderItem(props) {
         return(
             <Card>
                 <Card.Divider/>
-                <Card.Image source={require('./img/40Años.png')}>
+                <Card.Image source={{uri: baseUrl + item.img}}>
                     <Card.Title style={styles.title}>{item.name}</Card.Title>
                 </Card.Image>
                 <Text style={{margin: 20}}>
