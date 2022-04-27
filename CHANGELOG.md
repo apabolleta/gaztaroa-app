@@ -6,6 +6,18 @@ All notable changes to this project will be documented in this file.
 
 
 
+## [8.0.0] - 2022-04-27
+
+JSON server.
+
+### Added
+- Fetch images from remote JSON server
+- Use common colors
+
+### Removed
+- Locally loaded images
+- Hardcoded color codes
+
 ## [7.0.0] - 2022-04-27
 
 Buttons and icons.
