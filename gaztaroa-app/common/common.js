@@ -1,3 +1,3 @@
 export const baseUrl = "";
 export const colorGaztaroaDark = '#015afc';
-export const colorGaztaroaLight = '#c3d3da';
+export const colorGaztaroaLight = '#c2d3da';
