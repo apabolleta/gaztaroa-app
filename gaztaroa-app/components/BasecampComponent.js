@@ -11,6 +11,7 @@ import About from './AboutComponent';
 import Contact from './ContactComponent';
 import { Icon } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colorGaztaroaDark, colorGaztaroaLight } from '../common/common';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -22,7 +23,7 @@ function CalendarNavigator({navigation}) {
             screenOptions={{
                 headerMode: 'float',
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#015afc' },
+                headerStyle: { backgroundColor: colorGaztaroaDark },
                 headerTitleStyle: { color: '#fff' },
             }}
         >
@@ -52,7 +53,7 @@ function HomeNavigator({navigation}) {
             screenOptions={{
                 headerMode: 'screen',
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#015afc' },
+                headerStyle: { backgroundColor: colorGaztaroaDark },
                 headerTitleStyle: { color: '#fff' },
                 headerLeft: () => (<Icon name='menu' size={28} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />),
             }}
@@ -75,7 +76,7 @@ function AboutNavigator({navigation}) {
             screenOptions={{
                 headerMode: 'screen',
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#015afc' },
+                headerStyle: { backgroundColor: colorGaztaroaDark },
                 headerTitleStyle: { color: '#fff' },
                 headerLeft: () => (<Icon name='menu' size={28} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />),
             }}
@@ -98,7 +99,7 @@ function ContactNavigator({navigation}) {
             screenOptions={{
                 headerMode: 'screen',
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#015afc' },
+                headerStyle: { backgroundColor: colorGaztaroaDark },
                 headerTitleStyle: { color: '#fff' },
                 headerLeft: () => (<Icon name='menu' size={28} color='white' onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />),
             }}
@@ -140,7 +141,7 @@ function DrawerNavigator() {
             screenOptions={{
                 headerShown: false,
                 drawerStyle: {
-                    backgroundColor: '#c2d3da',
+                    backgroundColor: colorGaztaroaLight,
                 },
             }}
         >
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     drawerHeader: {
-        backgroundColor: '#015afc',
+        backgroundColor: colorGaztaroaDark,
         height: 100,
         alignItems: 'center',
         justifyContent: 'center',
