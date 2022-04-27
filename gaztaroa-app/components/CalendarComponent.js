@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { ListItem, Avatar } from 'react-native-elements';
 import { SafeAreaView, FlatList } from 'react-native';
-import { TRIPS } from '../common/trips';
 import { baseUrl } from '../common/common';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        trips: state.trips
+    }
+}
 
 class Calendar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            trips: TRIPS
-        };
-    }
-
     render() {
         const { navigate } = this.props.navigation;
 
@@ -34,7 +33,7 @@ class Calendar extends Component {
         return (
             <SafeAreaView>
                 <FlatList
-                    data={this.state.trips}
+                    data={this.props.trips.trips}
                     renderItem={renderCalendarItem}
                     keyExtractor={item => item.id.toString()}
                 />
@@ -43,4 +42,4 @@ class Calendar extends Component {
     }
 }
 
-export default Calendar;
+export default connect(mapStateToProps)(Calendar);

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { TRIPS } from '../common/trips';
-import { COMMENTS } from '../common/comments';
 import { baseUrl } from '../common/common';
+import { connect } from 'react-redux';
 
 function RenderTrip(props) {
     const trip = props.trip;
@@ -56,12 +55,17 @@ function RenderComments(props) {
     );
 }
 
+const mapStateToProps = state => {
+    return {
+        trips: state.trips,
+        comments: state.comments
+    }
+}
+
 class TripDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            trips: TRIPS,
-            comments: COMMENTS,
             favorites: []
         };
     }
@@ -75,16 +79,16 @@ class TripDetails extends Component {
         return (
             <ScrollView>
                 <RenderTrip
-                    trip={this.state.trips[+tripId]}
+                    trip={this.props.trips.trips[+tripId]}
                     favorite={this.state.favorites.some(el => el === tripId)}
                     onPress={() => this.markFavorite(tripId)}
                 />
                 <RenderComments
-                    comments={this.state.comments.filter((comment) => comment.tripId === tripId)}
+                    comments={this.props.comments.comments.filter((comment) => comment.tripId === tripId)}
                 />
             </ScrollView>
         );
     }
 }
 
-export default TripDetails;
+export default connect(mapStateToProps)(TripDetails);

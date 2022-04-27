@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View, StyleSheet } from 'react-native';
 import { Card } from 'react-native-elements';
-import { TRIPS } from '../common/trips';
-import { HEADERS } from '../common/headers';
-import { ACTIVITIES } from '../common/activities';
 import { baseUrl } from '../common/common';
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
     title: {
@@ -40,26 +38,24 @@ function RenderItem(props) {
     }
 }
 
-class Home extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          trips: TRIPS,
-          headers: HEADERS,
-          activities: ACTIVITIES
-        };
+const mapStateToProps = state => {
+    return {
+        trips: state.trips,
+        headers: state.headers,
+        activities: state.activities
     }
+}
 
+class Home extends Component {
     render() {
         return(
             <ScrollView>
-                <RenderItem item={this.state.headers.filter((header) => header.featured)[0]} />
-                <RenderItem item={this.state.trips.filter((trip) => trip.featured)[0]} />
-                <RenderItem item={this.state.activities.filter((activity) => activity.featured)[0]} />
+                <RenderItem item={this.props.headers.headers.filter((header) => header.featured)[0]} />
+                <RenderItem item={this.props.trips.trips.filter((trip) => trip.featured)[0]} />
+                <RenderItem item={this.props.activities.activities.filter((activity) => activity.featured)[0]} />
             </ScrollView>
         );
     }
 }
 
-export default Home;
+export default connect(mapStateToProps)(Home);

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Card, ListItem, Avatar } from 'react-native-elements';
 import { ScrollView, Text } from 'react-native';
-import { ACTIVITIES } from '../common/activities';
 import { baseUrl } from '../common/common';
+import { connect } from 'react-redux';
 
 function History() {
     return (
@@ -24,6 +24,12 @@ function History() {
             </Text>
         </Card>
     );
+}
+
+const mapStateToProps = state => {
+    return {
+        activities: state.activities
+    }
 }
 
 class About extends Component {
@@ -49,11 +55,11 @@ class About extends Component {
                 <Card>
                     <Card.Title>Actividades y recursos</Card.Title>
                     <Card.Divider/>
-                    {ACTIVITIES.map((item, index) => renderActivityItem(item, index))}
+                    {this.props.activities.activities.map((item, index) => renderActivityItem(item, index))}
                 </Card>
             </ScrollView>
         );
     }
 }
 
-export default About;
+export default connect(mapStateToProps)(About);

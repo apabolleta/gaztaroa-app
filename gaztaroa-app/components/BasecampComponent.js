@@ -12,6 +12,8 @@ import Contact from './ContactComponent';
 import { Icon } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colorGaztaroaDark, colorGaztaroaLight } from '../common/common';
+import { connect } from 'react-redux';
+import { fetchTrips, fetchComments, fetchHeaders, fetchActivities } from '../redux/ActionCreators';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -197,7 +199,31 @@ function DrawerNavigator() {
     );
 }
 
+const mapStateToProps = state => {
+    return {
+        trips: state.trips,
+        comments: state.comments,
+        headers: state.headers,
+        activities: state.activities
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    fetchTrips: () => dispatch(fetchTrips()),
+    fetchComments: () => dispatch(fetchComments()),
+    fetchHeaders: () => dispatch(fetchHeaders()),
+    fetchActivities: () => dispatch(fetchActivities())
+})
+
 class Basecamp extends Component {
+
+    componentDidMount() {
+        this.props.fetchTrips();
+        this.props.fetchComments();
+        this.props.fetchHeaders();
+        this.props.fetchActivities();
+    }
+
     render() {
         return (
             <NavigationContainer>
@@ -233,4 +259,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Basecamp;
+export default connect(mapStateToProps, mapDispatchToProps)(Basecamp);
