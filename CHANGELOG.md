@@ -6,6 +6,24 @@ All notable changes to this project will be documented in this file.
 
 
 
+## [9.0.0] - 2022-04-27
+
+Redux and Thunk.
+
+### Added
+- Redux-Thunk implementation for App state management
+    - [Redux](https://redux.js.org/)
+    - [Thunk](https://redux.js.org/usage/writing-logic-thunks)
+- Redux `Store` repository
+    - [Store](https://redux.js.org/api/store)
+- Extended Redux features via Middlewares
+    - [Middleware](https://redux.js.org/understanding/history-and-design/middleware)
+    - [Redux-Thunk](https://redux.js.org/usage/writing-logic-thunks)
+    - [Redux-Logger](https://github.com/LogRocket/redux-logger)
+
+### Removed
+- Local data containers
+
 ## [8.0.0] - 2022-04-27
 
 JSON server.
