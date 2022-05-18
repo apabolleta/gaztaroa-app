@@ -1,0 +1,13 @@
+site_name: Gaztaroa App
+nav:
+    - Home: index.md
+    - React Native: 1_react_native.md
+    - Components: 2_react_native_components.md
+    - Functional Components: 3_functional_components.md
+    - Stack Navigation: 4_stack_navigation.md
+    - Drawer Navigation: 5_drawer_navigation.md
+    - Component Navigation: 6_component_navigation.md
+    - Buttons and Icons: 7_buttons_icons.md
+    - JSON Server: 8_json_server.md
+    - Redux and Thunk: 9_redux_thunk.md
+theme: readthedocs
