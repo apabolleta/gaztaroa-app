@@ -2,7 +2,7 @@
 
 A basic feature on native apps is the ability to navigate through screens. [Navigation](https://reactnative.dev/docs/navigation) provides an interface to move on different views and components with integrated menus and links. React Native implements this functionality via [Stack Navigator](https://reactnavigation.org/docs/stack-navigator/), [Tab Navigator](https://reactnavigation.org/docs/tab-based-navigation/) or [Drawer Navigator](https://reactnavigation.org/docs/drawer-based-navigation/).
 
-## Basic navigation example
+## Basic Navigation example
 
 To configure navigation, Stack Navigation component from React Native must be used in stack scheme, through a hierarchy between different views of the application. Next, an example is shown:
 
