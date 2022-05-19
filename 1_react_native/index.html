@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>React Native - Gaztaroa App</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "React Native";
+        var mkdocs_page_input_path = "1_react_native.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Gaztaroa App
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">React Native</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#react-native">React Native</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#expo">Expo</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2_react_native_components/">Components</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3_functional_components/">Functional Components</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4_stack_navigation/">Stack Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5_drawer_navigation/">Drawer Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../6_component_navigation/">Component Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../7_buttons_icons/">Buttons and Icons</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../8_json_server/">JSON Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../9_redux_thunk/">Redux and Thunk</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Gaztaroa App</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>React Native</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="react-native-first-steps">React Native. First steps</h1>
+<p>This project is a sample project created with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a> and <a href="https://reactnative.dev/">React Native</a> for native development (<a href="https://www.android.com/">Android</a> and <a href="https://www.apple.com/ios/ios-15/">iOS</a>). Additional tools used during the development process are next:</p>
+<ul>
+<li><a href="https://git-scm.com/">Git</a> (VCS)</li>
+<li><a href="https://trello.com/">Trello</a> (Project management tool)</li>
+<li><a href="https://nodejs.org/en/">NodeJS</a> (JavaScript runtime for server-side development)</li>
+<li><a href="https://www.npmjs.com/">NPM</a> (Package manager for the NodeJS platform)</li>
+<li><a href="https://yarnpkg.com/">Yarn</a> (Package manager)</li>
+<li><a href="https://expo.dev/">Expo</a> (Platform for making universal native apps for Android, iOS and and the web with JS and React)</li>
+</ul>
+<p><strong>Native App Development</strong> term refers to building a mobile app exclusively for a single platform. The app is built with programming languages and tools that are specific to a single platform.</p>
+<h2 id="react-native">React Native</h2>
+<p><a href="https://github.com/facebook/react-native">React Native</a> is used in this project for native app development. Native resources are accessed and managed in JavaScript and using React core concepts. Once the app is fully developed, it can be compiled to platform-specific app (Android and iOS).</p>
+<blockquote>
+<p><em>React Native is like React, but it uses native components instead of web components as building blocks. So to understand the basic structure of a React Native app, you need to understand some of the basic React concepts, like JSX, components, <code>state</code>, and <code>props</code>.</em></p>
+</blockquote>
+<h2 id="expo">Expo</h2>
+<p>In this project <a href="https://github.com/expo/expo">Expo</a> is used together with React Native for native development. <a href="https://github.com/expo/expo-cli">Expo CLI</a> tool <code>expo-cli</code> can be used for building and configuring first React Native project. Additionally, the Expo client for <a href="https://play.google.com/store/apps/details?id=host.exp.exponent&amp;referrer=www">Android</a> and <a href="https://apps.apple.com/app/apple-store/id982107779">iOS</a> provides an interactive interface for app debugging and testing during the development process.</p>
+<blockquote>
+<p><em>Expo is an open-source platform for making universal native apps for Android, iOS, and the web with JavaScript and React.</em></p>
+</blockquote>
+<p>Both, the React Native Javascript framework for native development and the Expo platform, make up the development environment for this sample project. Most of the time, both environments integrate adequately and facilitate the development, however many functionalities require deep knowledge on both ecosystems to avoid conflicts. Main problems encountered have to do with some modules configuration and project dependencies.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2_react_native_components/" class="btn btn-neutral float-right" title="Components">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2_react_native_components/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

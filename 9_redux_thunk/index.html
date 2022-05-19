@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Redux and Thunk - Gaztaroa App</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Redux and Thunk";
+        var mkdocs_page_input_path = "9_redux_thunk.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Gaztaroa App
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1_react_native/">React Native</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2_react_native_components/">Components</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3_functional_components/">Functional Components</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4_stack_navigation/">Stack Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5_drawer_navigation/">Drawer Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../6_component_navigation/">Component Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../7_buttons_icons/">Buttons and Icons</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../8_json_server/">JSON Server</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Redux and Thunk</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#redux">Redux</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#redux-store">Redux Store</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#action-types">Action types</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reducers">Reducers</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#redux-thunk">Redux-Thunk</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#action-creators">Action Creators</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Gaztaroa App</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Redux and Thunk</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="redux-and-thunk">Redux and Thunk</h1>
+<p>One of the obvious limitation of the current implementation is the app state management, as the state in React is private to the component itself and not accessible from outside. Some techniques as State Lifting or Context solve this problem in a shallow way, but do not scale for bigger apps. For this purpose, we use Redux.</p>
+<h2 id="redux">Redux</h2>
+<blockquote>
+<p><em>Redux is a predictable state container for JavaScript apps.</em></p>
+</blockquote>
+<p><img alt="Redux Flow Diagram" src="../assets/redux-flow-diagram.gif" /></p>
+<p><a href="https://redux.js.org/">Redux</a> is an implementation of <a href="https://facebook.github.io/flux/">Flux</a> architecture in JavaScript. It works as unidirectional data flow implementation. It provides predictability and traceability, while facilitating any other modification. Redux integrates 3 fundamentals:</p>
+<ul>
+<li>Single source of trust</li>
+<li>State is read-only</li>
+<li>Changes are performed on pure functions</li>
+</ul>
+<p>Appart from Redux, we will be using <a href="https://github.com/reduxjs/redux-thunk">Redux-Thunk</a> as middleware to perform asynchronous requests to the database and <a href="https://github.com/LogRocket/redux-logger">Redux-Logger</a> to show app logs on console.</p>
+<h3 id="redux-store">Redux Store</h3>
+<p>All the app state is stored in a tree inside a single store. The function <code>createStore()</code> creates the <a href="https://redux.js.org/api/store">React Store</a> where <code>combineReducers()</code> combines independent <em>reducers</em> to act as single. Additionally, both middlewares are assigned to the store in the configuration step. <code>ConfigureStore()</code> shows the store configuration:</p>
+<pre><code class="language-javascript">export const ConfigureStore = () =&gt; {
+    const store = createStore(
+        combineReducers({
+            excursiones,
+            comentarios,
+            cabeceras,
+            actividades
+        }),
+        applyMiddleware(thunk, logger)
+    );
+
+    return store;
+}
+
+</code></pre>
+<h3 id="action-types">Action types</h3>
+<p>Define available actions for Redux data repositories (<em>reducers</em>).</p>
+<h3 id="reducers">Reducers</h3>
+<p><a href="https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers">Reducers</a> are Redux respositories that compose Redux store (trips, headers, activities, comments). The goal of the reducers is to update the state based on the action triggered.</p>
+<h2 id="redux-thunk">Redux-Thunk</h2>
+<blockquote>
+<p>Thunk middleware for Redux. It allows writing functions with logic inside that can interact with a Redux store's dispatch and getState methods.</p>
+</blockquote>
+<p><img alt="Redux-Thunk Flow Diagram" src="../assets/redux-thunk-flow-diagram.gif" /></p>
+<p>Provide an API to perform asynchronous queries to database.</p>
+<h3 id="action-creators">Action Creators</h3>
+<p>Functions (Thunk) and actions that will respond to the app requirements. As they are implemented based on asynchronous requests, they will manage <em>promise</em> objects using <code>dispatch()</code> function. In this case, they will perform queries to REST API from JSON server.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../8_json_server/" class="btn btn-neutral float-left" title="JSON Server"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../8_json_server/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

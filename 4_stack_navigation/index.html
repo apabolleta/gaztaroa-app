@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Stack Navigation - Gaztaroa App</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Stack Navigation";
+        var mkdocs_page_input_path = "4_stack_navigation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Gaztaroa App
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1_react_native/">React Native</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2_react_native_components/">Components</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3_functional_components/">Functional Components</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Stack Navigation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-navigation-example">Basic Navigation example</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5_drawer_navigation/">Drawer Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../6_component_navigation/">Component Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../7_buttons_icons/">Buttons and Icons</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../8_json_server/">JSON Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../9_redux_thunk/">Redux and Thunk</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Gaztaroa App</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Stack Navigation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="stack-navigation">Stack Navigation</h1>
+<p>A basic feature on native apps is the ability to navigate through screens. <a href="https://reactnative.dev/docs/navigation">Navigation</a> provides an interface to move on different views and components with integrated menus and links. React Native implements this functionality via <a href="https://reactnavigation.org/docs/stack-navigator/">Stack Navigator</a>, <a href="https://reactnavigation.org/docs/tab-based-navigation/">Tab Navigator</a> or <a href="https://reactnavigation.org/docs/drawer-based-navigation/">Drawer Navigator</a>.</p>
+<h2 id="basic-navigation-example">Basic Navigation example</h2>
+<p>To configure navigation, Stack Navigation component from React Native must be used in stack scheme, through a hierarchy between different views of the application. Next, an example is shown:</p>
+<pre><code class="language-javascript">import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
+const MyStack = () =&gt; {
+    return (
+    &lt;NavigationContainer&gt;
+        &lt;Stack.Navigator&gt;
+            &lt;Stack.Screen
+                name=&quot;Home&quot;
+                component={HomeScreen}
+                options={{ title: 'Welcome' }}
+            /&gt;
+            &lt;Stack.Screen name=&quot;Profile&quot; component={ProfileScreen} /&gt;
+        &lt;/Stack.Navigator&gt;
+    &lt;/NavigationContainer&gt;
+    );
+};
+
+</code></pre>
+<p>The example shows 2 screens (<code>Home</code> and <code>Profile</code>) using <code>Stack.Screen</code> components inside a <code>Stack.Navigator</code> component. In addition, we need to wrap the whole app in <code>NavigationContainer</code>. Options can be passed to screens in the <code>options</code> <code>prop</code> of component <code>Stack.Screen</code>. Each screen also takes a <code>component</code> <code>prop</code> that is a React component to render. This components receive a <code>prop</code> called <code>navigation</code> which has various methods to link to other screens. As an example:</p>
+<pre><code class="language-javascript">const HomeScreen = ({ navigation }) =&gt; {
+    return (
+        &lt;Button
+            title=&quot;Go to Jane's profile&quot;
+            onPress={() =&gt;
+            navigation.navigate('Profile', { name: 'Jane' })
+            }
+        /&gt;
+    );
+};
+
+const ProfileScreen = ({ navigation, route }) =&gt; {
+    return &lt;Text&gt;This is {route.params.name}'s profile&lt;/Text&gt;;
+};
+
+</code></pre>
+<p>This navigation scheme allows to design different levels of views to organize the app into, while providing modularity to the code. Additionally, many navigator components can be nested in order to build complex navigation schemes. In the current sample application, Drawer Navigator is used on top of the app, while Stack Navigator is used deeper in the hierarchy to switch between specific components.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3_functional_components/" class="btn btn-neutral float-left" title="Functional Components"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../5_drawer_navigation/" class="btn btn-neutral float-right" title="Drawer Navigation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3_functional_components/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../5_drawer_navigation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
