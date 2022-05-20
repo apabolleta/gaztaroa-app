@@ -7,7 +7,7 @@ export const trips = (state = { isLoading: true,
                       action) =>
 {
     switch (action.type) {
-        case ActionTypes.ADD_TRIPS:
+        case ActionTypes.TRIPS_ADD:
             return {...state, isLoading: false, errMsg: null, trips: action.payload};
 
         case ActionTypes.TRIPS_LOADING:

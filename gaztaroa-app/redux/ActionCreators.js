@@ -1,7 +1,13 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../common/common';
 
+// -----------------------------------------------
+// comments
+// -----------------------------------------------
 export const fetchComments = () => (dispatch) => {
+
+    dispatch(commentsLoading());
+
     return fetch(baseUrl + 'comments')
     .then(response => {
         if (response.ok) {
@@ -21,15 +27,23 @@ export const fetchComments = () => (dispatch) => {
     .catch(error => dispatch(commentsFailed(error.message)));
 };
 
+export const commentsLoading = () => ({
+    type: ActionTypes.COMMENTS_LOADING
+});
+
 export const commentsFailed = (errmsg) => ({
     type: ActionTypes.COMMENTS_FAILED,
     payload: errmsg
 });
 
 export const addComments = (comments) => ({
-    type: ActionTypes.ADD_COMMENTS,
+    type: ActionTypes.COMMENTS_ADD,
     payload: comments
 });
+
+// -----------------------------------------------
+// trips
+// -----------------------------------------------
 
 export const fetchTrips = () => (dispatch) => {
 
@@ -64,9 +78,13 @@ export const tripsFailed = (errmsg) => ({
 });
 
 export const addTrips = (trips) => ({
-    type: ActionTypes.ADD_TRIPS,
+    type: ActionTypes.TRIPS_ADD,
     payload: trips
 });
+
+// -----------------------------------------------
+// headers
+// -----------------------------------------------
 
 export const fetchHeaders = () => (dispatch) => {
 
@@ -101,9 +119,13 @@ export const headersFailed = (errmsg) => ({
 });
 
 export const addHeaders = (headers) => ({
-    type: ActionTypes.ADD_HEADERS,
+    type: ActionTypes.HEADERS_ADD,
     payload: headers
 });
+
+// -----------------------------------------------
+// activities
+// -----------------------------------------------
 
 export const fetchActivities = () => (dispatch) => {
 
@@ -138,6 +160,6 @@ export const activitiesFailed = (errmsg) => ({
 });
 
 export const addActivities = (activities) => ({
-    type: ActionTypes.ADD_ACTIVITIES,
+    type: ActionTypes.ACTIVITIES_ADD,
     payload: activities
 });

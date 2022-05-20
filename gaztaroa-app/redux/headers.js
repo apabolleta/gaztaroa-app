@@ -7,7 +7,7 @@ export const headers = (state = { isLoading: true,
                         action) =>
 {
     switch (action.type) {
-        case ActionTypes.ADD_HEADERS:
+        case ActionTypes.HEADERS_ADD:
             return {...state, isLoading: false, errMsg: null, headers: action.payload};
 
         case ActionTypes.HEADERS_LOADING:

@@ -7,7 +7,7 @@ export const activities = (state = { isLoading: true,
                            action) =>
 {
     switch (action.type) {
-        case ActionTypes.ADD_ACTIVITIES:
+        case ActionTypes.ACTIVITIES_ADD:
             return {...state, isLoading: false, errMsg: null, activities: action.payload};
 
         case ActionTypes.ACTIVITIES_LOADING:

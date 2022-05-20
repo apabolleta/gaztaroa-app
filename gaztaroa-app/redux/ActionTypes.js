@@ -1,11 +1,19 @@
+// trips
 export const TRIPS_LOADING = 'TRIPS_LOADING';
-export const ADD_TRIPS = 'ADD_TRIPS';
+export const TRIPS_ADD = 'TRIPS_ADD';
 export const TRIPS_FAILED = 'TRIPS_FAILED';
-export const ADD_COMMENTS = 'ADD_COMMENTS';
+
+// comments
+export const COMMENTS_LOADING = 'COMMENTS_LOADING'
+export const COMMENTS_ADD = 'COMMENTS_ADD';
 export const COMMENTS_FAILED = 'COMMENTS_FAILED';
+
+// headers
 export const HEADERS_LOADING = 'HEADERS_LOADING';
-export const ADD_HEADERS = 'ADD_HEADERS';
+export const HEADERS_ADD = 'HEADERS_ADD';
 export const HEADERS_FAILED = 'HEADERS_FAILED';
+
+// activities
 export const ACTIVITIES_LOADING = 'ACTIVITIES_LOADING';
-export const ADD_ACTIVITIES = 'ADD_ACTIVITIES';
+export const ACTIVITIES_ADD = 'ACTIVITIES_ADD';
 export const ACTIVITIES_FAILED = 'ACTIVITIES_FAILED';
