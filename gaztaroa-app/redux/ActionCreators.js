@@ -4,6 +4,7 @@ import { baseUrl } from '../common/common';
 // -----------------------------------------------
 // comments
 // -----------------------------------------------
+
 export const fetchComments = () => (dispatch) => {
 
     dispatch(commentsLoading());
@@ -162,4 +163,19 @@ export const activitiesFailed = (errmsg) => ({
 export const addActivities = (activities) => ({
     type: ActionTypes.ACTIVITIES_ADD,
     payload: activities
+});
+
+// -----------------------------------------------
+// favorites
+// -----------------------------------------------
+
+export const postFavorite = (tripId) => (dispatch) => {
+    setTimeout(() => {
+        dispatch(addFavorite(tripId));
+    }, 2000);
+};
+
+export const addFavorite = (tripId) => ({
+    type: ActionTypes.FAVORITES_ADD,
+    payload: tripId
 });

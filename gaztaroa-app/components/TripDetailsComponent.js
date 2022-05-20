@@ -3,6 +3,7 @@ import { Text, View, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { baseUrl } from '../common/common';
 import { connect } from 'react-redux';
+import { postFavorite } from '../redux/ActionCreators';
 
 function RenderTrip(props) {
     const trip = props.trip;
@@ -58,20 +59,18 @@ function RenderComments(props) {
 const mapStateToProps = state => {
     return {
         trips: state.trips,
-        comments: state.comments
+        comments: state.comments,
+        favorites: state.favorites
     }
 }
 
-class TripDetails extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            favorites: []
-        };
-    }
+const mapDispatchToProps = dispatch => ({
+    postFavorite: (tripId) => dispatch(postFavorite(tripId))
+})
 
+class TripDetails extends Component {
     markFavorite(tripId) {
-        this.setState({favorites: this.state.favorites.concat(tripId)});
+        this.props.postFavorite(tripId);
     }
 
     render() {
@@ -80,7 +79,7 @@ class TripDetails extends Component {
             <ScrollView>
                 <RenderTrip
                     trip={this.props.trips.trips[+tripId]}
-                    favorite={this.state.favorites.some(el => el === tripId)}
+                    favorite={this.props.favorites.favorites.some(el => el === tripId)}
                     onPress={() => this.markFavorite(tripId)}
                 />
                 <RenderComments
@@ -91,4 +90,4 @@ class TripDetails extends Component {
     }
 }
 
-export default connect(mapStateToProps)(TripDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(TripDetails);
