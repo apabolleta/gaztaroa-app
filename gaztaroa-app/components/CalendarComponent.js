@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListItem, Avatar } from 'react-native-elements';
-import { SafeAreaView, View, FlatList } from 'react-native';
+import { SafeAreaView, View, FlatList, Text } from 'react-native';
 import { baseUrl } from '../common/common';
 import { connect } from 'react-redux';
 import { AppActivityIndicator } from './ActivityIndicatorComponent';
@@ -34,8 +34,8 @@ class Calendar extends Component {
         var calendarBody;
         if (this.props.trips.isLoading) {
             calendarBody = <AppActivityIndicator />;
-        } else if (this.props.trips.errmsg) {
-            calendarBody = <View><Text>{this.props.trips.errmsg}</Text></View>;
+        } else if (this.props.trips.errMsg) {
+            calendarBody = <View><Text>{this.props.trips.errMsg}</Text></View>;
         } else {
             calendarBody = <SafeAreaView>
                                 <FlatList

@@ -61,10 +61,10 @@ class About extends Component {
                     </Card>
                 </ScrollView>
             );
-        } else if (this.props.activities.errmsg) {
+        } else if (this.props.activities.errMsg) {
             return (
                 <View>
-                    <Text>{this.props.activities.errmsg}</Text>
+                    <Text>{this.props.activities.errMsg}</Text>
                 </View>
             );
         } else {

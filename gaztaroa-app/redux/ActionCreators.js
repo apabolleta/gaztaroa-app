@@ -20,8 +20,8 @@ export const fetchComments = () => (dispatch) => {
         }
       },
       error => {
-            var errmsg = new Error(error.message);
-            throw errmsg;
+            var errMsg = new Error(error.message);
+            throw errMsg;
       })
     .then(response => response.json())
     .then(comments => dispatch(addComments(comments)))
@@ -32,9 +32,9 @@ export const commentsLoading = () => ({
     type: ActionTypes.COMMENTS_LOADING
 });
 
-export const commentsFailed = (errmsg) => ({
+export const commentsFailed = (errMsg) => ({
     type: ActionTypes.COMMENTS_FAILED,
-    payload: errmsg
+    payload: errMsg
 });
 
 export const addComments = (comments) => ({
@@ -61,8 +61,8 @@ export const fetchTrips = () => (dispatch) => {
         }
       },
       error => {
-            var errmsg = new Error(error.message);
-            throw errmsg;
+            var errMsg = new Error(error.message);
+            throw errMsg;
       })
     .then(response => response.json())
     .then(trips => dispatch(addTrips(trips)))
@@ -73,9 +73,9 @@ export const tripsLoading = () => ({
     type: ActionTypes.TRIPS_LOADING
 });
 
-export const tripsFailed = (errmsg) => ({
+export const tripsFailed = (errMsg) => ({
     type: ActionTypes.TRIPS_FAILED,
-    payload: errmsg
+    payload: errMsg
 });
 
 export const addTrips = (trips) => ({
@@ -102,8 +102,8 @@ export const fetchHeaders = () => (dispatch) => {
         }
         },
         error => {
-            var errmsg = new Error(error.message);
-            throw errmsg;
+            var errMsg = new Error(error.message);
+            throw errMsg;
         })
     .then(response => response.json())
     .then(headers => dispatch(addHeaders(headers)))
@@ -114,9 +114,9 @@ export const headersLoading = () => ({
     type: ActionTypes.HEADERS_LOADING
 });
 
-export const headersFailed = (errmsg) => ({
+export const headersFailed = (errMsg) => ({
     type: ActionTypes.HEADERS_FAILED,
-    payload: errmsg
+    payload: errMsg
 });
 
 export const addHeaders = (headers) => ({
@@ -143,8 +143,8 @@ export const fetchActivities = () => (dispatch) => {
         }
         },
         error => {
-            var errmsg = new Error(error.message);
-            throw errmsg;
+            var errMsg = new Error(error.message);
+            throw errMsg;
         })
     .then(response => response.json())
     .then(activities => dispatch(addActivities(activities)))
@@ -155,9 +155,9 @@ export const activitiesLoading = () => ({
     type: ActionTypes.ACTIVITIES_LOADING
 });
 
-export const activitiesFailed = (errmsg) => ({
+export const activitiesFailed = (errMsg) => ({
     type: ActionTypes.ACTIVITIES_FAILED,
-    payload: errmsg
+    payload: errMsg
 });
 
 export const addActivities = (activities) => ({

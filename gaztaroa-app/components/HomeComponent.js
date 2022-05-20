@@ -23,10 +23,10 @@ function RenderItem(props) {
         return(
             <AppActivityIndicator />
         );
-    } else if (props.errmsg) {
+    } else if (props.errMsg) {
         return(
             <View>
-                <Text>{props.errmsg}</Text>
+                <Text>{props.errMsg}</Text>
             </View>
         );
     } else {
@@ -65,17 +65,17 @@ class Home extends Component {
                 <RenderItem
                     item={this.props.headers.headers.filter((header) => header.featured)[0]}
                     isLoading={this.props.headers.isLoading}
-                    errmsg={this.props.headers.errmsg}
+                    errMsg={this.props.headers.errMsg}
                 />
                 <RenderItem
                     item={this.props.trips.trips.filter((trip) => trip.featured)[0]}
                     isLoading={this.props.trips.isLoading}
-                    errmsg={this.props.trips.errmsg}
+                    errMsg={this.props.trips.errMsg}
                 />
                 <RenderItem
                     item={this.props.activities.activities.filter((activity) => activity.featured)[0]}
                     isLoading={this.props.activities.isLoading}
-                    errmsg={this.props.activities.errmsg}
+                    errMsg={this.props.activities.errMsg}
                 />
             </ScrollView>
         );
