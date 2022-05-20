@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { ListItem, Avatar } from 'react-native-elements';
-import { SafeAreaView, FlatList } from 'react-native';
+import { SafeAreaView, View, FlatList } from 'react-native';
 import { baseUrl } from '../common/common';
 import { connect } from 'react-redux';
+import { AppActivityIndicator } from './ActivityIndicatorComponent';
 
 const mapStateToProps = state => {
     return {
@@ -30,14 +31,25 @@ class Calendar extends Component {
             );
         };
 
+        var calendarBody;
+        if (this.props.trips.isLoading) {
+            calendarBody = <AppActivityIndicator />;
+        } else if (this.props.trips.errmsg) {
+            calendarBody = <View><Text>{this.props.trips.errmsg}</Text></View>;
+        } else {
+            calendarBody = <SafeAreaView>
+                                <FlatList
+                                    data={this.props.trips.trips}
+                                    renderItem={renderCalendarItem}
+                                    keyExtractor={item => item.id.toString()}
+                                />
+                            </SafeAreaView>;
+        }
+
         return (
-            <SafeAreaView>
-                <FlatList
-                    data={this.props.trips.trips}
-                    renderItem={renderCalendarItem}
-                    keyExtractor={item => item.id.toString()}
-                />
-            </SafeAreaView>
+            <>
+                {calendarBody}
+            </>
         );
     }
 }

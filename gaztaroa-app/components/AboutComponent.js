@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Card, ListItem, Avatar } from 'react-native-elements';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import { baseUrl } from '../common/common';
 import { connect } from 'react-redux';
+import { AppActivityIndicator } from './ActivityIndicatorComponent';
 
 function History() {
     return (
@@ -49,16 +50,35 @@ class About extends Component {
             );
         };
 
-        return (
-            <ScrollView>
-                <History />
-                <Card>
-                    <Card.Title>Actividades y recursos</Card.Title>
-                    <Card.Divider/>
-                    {this.props.activities.activities.map((item, index) => renderActivityItem(item, index))}
-                </Card>
-            </ScrollView>
-        );
+        if (this.props.activities.isLoading) {
+            return (
+                <ScrollView>
+                    <History />
+                    <Card>
+                        <Card.Title>Actividades y recursos</Card.Title>
+                        <Card.Divider/>
+                        <AppActivityIndicator />
+                    </Card>
+                </ScrollView>
+            );
+        } else if (this.props.activities.errmsg) {
+            return (
+                <View>
+                    <Text>{this.props.activities.errmsg}</Text>
+                </View>
+            );
+        } else {
+            return (
+                <ScrollView>
+                    <History />
+                    <Card>
+                        <Card.Title>Actividades y recursos</Card.Title>
+                        <Card.Divider/>
+                        {this.props.activities.activities.map((item, index) => renderActivityItem(item, index))}
+                    </Card>
+                </ScrollView>
+            );
+        }
     }
 }
 
