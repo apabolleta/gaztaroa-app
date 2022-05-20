@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { colorGaztaroaDark } from '../common/common';
 
-export const ActivityIndicator = () => {
+export const AppActivityIndicator = () => {
     return (
         <View style={styles.indicatorView}>
             <ActivityIndicator size='large' color={colorGaztaroaDark} />
