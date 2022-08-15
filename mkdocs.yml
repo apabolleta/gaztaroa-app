@@ -10,4 +10,5 @@ nav:
     - Buttons and Icons: 7_buttons_icons.md
     - JSON Server: 8_json_server.md
     - Redux and Thunk: 9_redux_thunk.md
+    - ActivityIndicator: 10_activity_indicator.md
 theme: readthedocs
