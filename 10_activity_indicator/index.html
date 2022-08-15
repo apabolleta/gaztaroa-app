@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Activity Indicator - Gaztaroa App</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Activity Indicator";
+        var mkdocs_page_input_path = "10_activity_indicator.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Gaztaroa App
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1_react_native/">React Native</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2_react_native_components/">Components</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3_functional_components/">Functional Components</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4_stack_navigation/">Stack Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5_drawer_navigation/">Drawer Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../6_component_navigation/">Component Navigation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../7_buttons_icons/">Buttons and Icons</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../8_json_server/">JSON Server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../9_redux_thunk/">Redux and Thunk</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Gaztaroa App</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Activity Indicator</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="activity-indicator">Activity Indicator</h1>
+<p>User Experience (UX) design is the process to create apps that provide meaningful and relevant experiences to users. In this context, loaders are attached to the loading process of the app in order to improve the UX.</p>
+<p><img alt="activity-indicator" src="../assets/activity-indicator.gif" /></p>
+<h2 id="react-native-activityindicator">React Native ActivityIndicator</h2>
+<p>React Native provides <code>ActivityIndicator</code> component that loads a loader with custom format into the app. First, we define our custom <code>ActivityIndicator</code> component:</p>
+<pre><code class="language-javascript">import React from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { colorGaztaroaDark } from '../common/common';
+
+export const AppActivityIndicator = () =&gt; {
+    return (
+        &lt;View style={styles.indicatorView}&gt;
+            &lt;ActivityIndicator size='large' color={colorGaztaroaDark} /&gt;
+            &lt;Text style={styles.indicatorText}&gt;En proceso . . .&lt;/Text&gt;
+        &lt;/View&gt;
+    );
+};
+
+const styles = StyleSheet.create({
+    indicatorView: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
+    },
+    indicatorText: {
+        color: colorGaztaroaDark,
+        fontSize: 14,
+        fontWeight: 'bold'
+    }
+});
+
+</code></pre>
+<p>Loader components will be used when the app performs long queries or time-consuming operations, such as database queries. The app retrieves the state of this queries as boolean values in the <em>Store</em>. When this value <code>isLoading</code> is set to <code>true</code> and untill set to <code>false</code>, the app must show a loader component. For this operation, <code>RenderItem</code> function is provided:</p>
+<pre><code class="language-javascript">function RenderItem(props) {
+    if (props.isLoading) {
+        return(
+            &lt;AppActivityIndicator /&gt;
+        );
+    } else if (props.errmsg) {
+        return(
+            &lt;View&gt;
+                &lt;Text&gt;{props.errmsg}&lt;/Text&gt;
+            &lt;/View&gt;
+        );
+    } else {
+        const item = props.item;
+
+        if (item != null) {
+            return(
+                &lt;&gt;...&lt;/&gt;
+            );
+        } else {
+            return(&lt;View&gt;&lt;/View&gt;);
+        }
+    }
+}
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
