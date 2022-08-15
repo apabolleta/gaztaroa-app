@@ -5,9 +5,13 @@ BUILDS_DIR=site
 YARN=yarn
 MKDOCS=mkdocs
 EAS=eas
+JSON=json-server
+HOST=127.0.0.1
+PORT=3001
+DB=db.json
 
 
-.PHONY: help install doc deploy start build clean
+.PHONY: help install doc deploy start serve build clean
 
 help:
 	@echo "usage: make <target>"
@@ -18,6 +22,7 @@ help:
 	@echo "doc		Build project documentation"
 	@echo "deploy		Deploy docs to GitHub Pages"
 	@echo "start		Start the application"
+	@echo "serve		Serve JSON"
 	@echo "build		Build project"
 	@echo "clean		Cleans project files"
 
@@ -36,6 +41,10 @@ deploy:
 start:
 	@echo "Starting the application..."
 	@$(YARN) --cwd $(PROJECT_DIR) start
+
+serve:
+	@echo "Serve JSON..."
+	@cd json-server/ && $(JSON) --host $(HOST) $(DB) -p $(PORT)
 
 build:
 	@echo "Building project..."
