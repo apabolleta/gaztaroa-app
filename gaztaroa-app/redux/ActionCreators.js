@@ -170,9 +170,7 @@ export const addActivities = (activities) => ({
 // -----------------------------------------------
 
 export const postFavorite = (tripId) => (dispatch) => {
-    setTimeout(() => {
-        dispatch(addFavorite(tripId));
-    }, 2000);
+    dispatch(addFavorite(tripId));
 };
 
 export const addFavorite = (tripId) => ({
