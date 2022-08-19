@@ -2,9 +2,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2022-04-24
+## [Unreleased] - Latest
 
+## [10.0.0] - 2022-08-19
 
+UX/UI.
+
+### Added
+- `ActivityIndicator` component for time-consuming database queries.
+    - [ActivityIndicator](https://reactnative.dev/docs/activityindicator)
+- Save *Favorites* to app state.
 
 ## [9.0.0] - 2022-04-27
 
