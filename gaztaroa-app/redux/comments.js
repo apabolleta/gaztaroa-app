@@ -11,7 +11,7 @@ export const comments = (state = { isLoading: true,
             return {...state, isLoading: false, errMsg: null, comments: action.payload};
 
         case ActionTypes.COMMENTS_LOADING:
-            return {...state, isLoading: true, errMsg: null, activities: []}
+            return {...state, isLoading: true, errMsg: null, comments: []}
 
         case ActionTypes.COMMENTS_FAILED:
             return {...state, isLoading: false, errMsg: action.payload};
