@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
-import { Card, Icon } from 'react-native-elements';
-import { baseUrl } from '../common/common';
+import { Text, View, ScrollView, Modal, Pressable, StyleSheet } from 'react-native';
+import { Card, Icon, Rating, Input } from 'react-native-elements';
+import { baseUrl, colorGaztaroaDark } from '../common/common';
 import { connect } from 'react-redux';
 import { postFavorite } from '../redux/ActionCreators';
 
@@ -17,14 +17,28 @@ function RenderTrip(props) {
                 <Text style={{margin: 20}}>
                     {trip.description}
                 </Text>
-                <Icon
-                    raised
-                    reverse
-                    name={props.favorite ? 'heart' : 'heart-o'}
-                    type='font-awesome'
-                    color='#f50'
-                    onPress={() => props.favorite ? console.log('La excursión ya se encuentra entre las favoritas') : props.onPress()}
-                />
+                <View style={{
+                    flex:1,
+                    flexDirection:"row",
+                    justifyContent:"center"
+                }}>
+                    <Icon
+                        raised
+                        reverse
+                        name={props.favorite ? 'heart' : 'heart-o'}
+                        type='font-awesome'
+                        color='#f50'
+                        onPress={() => props.favorite ? console.log('Trip already in favorites list') : props.onPressFavorite()}
+                    />
+                    <Icon
+                        raised
+                        reverse
+                        name='pencil'
+                        type='font-awesome'
+                        color={colorGaztaroaDark}
+                        onPress={() => props.onPressComment()}
+                    />
+                </View>
             </Card>
         );
     } else {
@@ -56,6 +70,66 @@ function RenderComments(props) {
     );
 }
 
+function RenderForm(props) {
+    return(
+        <Modal
+            visible={props.isVisible}
+        >
+            <View
+                style={{
+                    padding: "5%",
+                }}
+            >
+                <Rating
+                    showRating
+                    defaultRating={3}
+                    fractions={0}
+                />
+                <Input
+                    placeholder='Author'
+                    leftIcon={{type: 'font-awesome', name:'user-o'}}
+                />
+                <Input
+                    placeholder='Comment'
+                    leftIcon={{type: 'font-awesome', name:'comment-o'}}
+                />
+                <Pressable
+                    style={styles.button}
+                    onPress={() => props.onSubmit()}
+                >
+                    <Text
+                        style={styles.buttonText}
+                    >
+                        Submit
+                    </Text>
+                </Pressable>
+                <Pressable
+                    style={styles.button}
+                    onPress={() => props.onCancel()}
+                >
+                    <Text
+                        style={styles.buttonText}
+                    >
+                        Cancel
+                    </Text>
+                </Pressable>
+            </View>
+        </Modal>
+    );
+}
+
+const styles = StyleSheet.create({
+    button: {
+        padding: 10
+    },
+    buttonText: {
+        color: colorGaztaroaDark,
+        textTransform: "uppercase",
+        textAlign: "center",
+        fontSize: 18
+    }
+})
+
 const mapStateToProps = state => {
     return {
         trips: state.trips,
@@ -69,18 +143,33 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class TripDetails extends Component {
+    state = {
+        modalVisible: false
+    };
+
     markFavorite(tripId) {
         this.props.postFavorite(tripId);
     }
 
+    setModalVisible(isVisible) {
+        this.setState({modalVisible: isVisible});
+    }
+
     render() {
         const { tripId } = this.props.route.params;
+        const { modalVisible } = this.state;
         return (
             <ScrollView>
+                <RenderForm
+                    isVisible={modalVisible}
+                    onSubmit={() => {}}
+                    onCancel={() => {}}
+                />
                 <RenderTrip
                     trip={this.props.trips.trips[+tripId]}
                     favorite={this.props.favorites.favorites.some(el => el === tripId)}
-                    onPress={() => this.markFavorite(tripId)}
+                    onPressFavorite={() => this.markFavorite(tripId)}
+                    onPressComment={() => this.setModalVisible(true)}
                 />
                 <RenderComments
                     comments={this.props.comments.comments.filter((comment) => comment.tripId === tripId)}
