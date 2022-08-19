@@ -42,6 +42,15 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
+export const postComment = (comment) => (dispatch) => {
+    dispatch(addComment(comment));
+};
+
+export const addComment = (comment) => ({
+    type: ActionTypes.COMMENTS_ADD_SINGLE,
+    payload: comment
+});
+
 // -----------------------------------------------
 // trips
 // -----------------------------------------------
