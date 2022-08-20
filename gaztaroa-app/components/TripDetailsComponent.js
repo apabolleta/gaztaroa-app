@@ -82,7 +82,8 @@ function RenderForm(props) {
             >
                 <Rating
                     showRating
-                    defaultRating={3}
+                    ratingCount={5}
+                    startingValue={3}
                     fractions={0}
                 />
                 <Input
