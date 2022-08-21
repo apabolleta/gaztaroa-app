@@ -3,7 +3,7 @@ import { Text, View, ScrollView, Modal, Pressable, StyleSheet } from 'react-nati
 import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { baseUrl, colorGaztaroaDark } from '../common/common';
 import { connect } from 'react-redux';
-import { postFavorite } from '../redux/ActionCreators';
+import { postComment, postFavorite } from '../redux/ActionCreators';
 
 function RenderTrip(props) {
     const trip = props.trip;
@@ -73,7 +73,7 @@ function RenderComments(props) {
 function RenderForm(props) {
     return(
         <Modal
-            visible={props.isVisible}
+            visible={props.visible}
         >
             <View
                 style={{
@@ -85,14 +85,17 @@ function RenderForm(props) {
                     ratingCount={5}
                     startingValue={3}
                     fractions={0}
+                    onFinishRating={(rating) => props.onChange({rating: rating})}
                 />
                 <Input
                     placeholder='Author'
                     leftIcon={{type: 'font-awesome', name:'user-o'}}
+                    onChangeText={(author) => props.onChange({author: author})}
                 />
                 <Input
                     placeholder='Comment'
                     leftIcon={{type: 'font-awesome', name:'comment-o'}}
+                    onChangeText={(comment) => props.onChange({comment: comment})}
                 />
                 <Pressable
                     style={styles.button}
@@ -140,37 +143,78 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    postFavorite: (tripId) => dispatch(postFavorite(tripId))
+    postFavorite: (tripId) => dispatch(postFavorite(tripId)),
+    postComment: (comment) => dispatch(postComment(comment))
 })
 
 class TripDetails extends Component {
-    state = {
-        modalVisible: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false,
+            rating: 3,
+            author: '',
+            comment: ''
+        }
+    }
 
     markFavorite(tripId) {
         this.props.postFavorite(tripId);
     }
 
-    setModalVisible(isVisible) {
-        this.setState({modalVisible: isVisible});
+    toggleModal() {
+        this.setState({showModal: !this.state.showModal});
+    }
+
+    setComment = (comment) => {
+        const {rating, author, comment: strComment} = comment;
+
+        if (rating) this.setState({rating: rating});
+        if (author) this.setState({author: author});
+        if (strComment) this.setState({comment: strComment});
+    }
+
+    handleComment(tripId) {
+        this.props.postComment({
+            tripId: tripId,
+            rating: this.state.rating,
+            author: this.state.author,
+            comment: this.state.comment,
+            day: (new Date()).toISOString()
+        });
+    }
+
+    resetForm() {
+        this.setState({
+            rating: 3,
+            author: '',
+            comment: ''
+        });
     }
 
     render() {
         const { tripId } = this.props.route.params;
-        const { modalVisible } = this.state;
+        const { showModal } = this.state;
+
         return (
             <ScrollView>
                 <RenderForm
-                    isVisible={modalVisible}
-                    onSubmit={() => {}}
-                    onCancel={() => {}}
+                    visible={showModal}
+                    onChange={this.setComment}
+                    onSubmit={() => {
+                        this.handleComment(tripId);
+                        this.toggleModal();
+                    }}
+                    onCancel={() => {
+                        this.resetForm();
+                        this.toggleModal()
+                    }}
                 />
                 <RenderTrip
                     trip={this.props.trips.trips[+tripId]}
                     favorite={this.props.favorites.favorites.some(el => el === tripId)}
                     onPressFavorite={() => this.markFavorite(tripId)}
-                    onPressComment={() => this.setModalVisible(true)}
+                    onPressComment={() => this.toggleModal()}
                 />
                 <RenderComments
                     comments={this.props.comments.comments.filter((comment) => comment.tripId === tripId)}
