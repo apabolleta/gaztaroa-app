@@ -11,4 +11,5 @@ nav:
     - JSON Server: 8_json_server.md
     - Redux and Thunk: 9_redux_thunk.md
     - ActivityIndicator: 10_activity_indicator.md
+    - Forms: 11_forms_redux.md
 theme: readthedocs
