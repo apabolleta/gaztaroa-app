@@ -49,3 +49,7 @@ Otherwise, build application for Android and iOS:
 ```bash
 $ make build
 ```
+
+## Docs
+
+See Gaztaroa App [Docs](https://apabolleta.github.io/gaztaroa-app/) for more information.
