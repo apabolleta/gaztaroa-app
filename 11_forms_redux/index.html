@@ -87,6 +87,10 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Forms</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#form-view">Form View</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#form-logic">Form Logic</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -114,8 +118,83 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="forms-and-modals-with-redux">Forms and Modals with Redux</h1>
-<p>Forms allow users to interact with the app. For this concrete example, a form is created for posting comments on trips. Forms in React are implemented in two ways: view and logic.</p>
-<p>As a view, form elements are rendered in order to introduce data to the app. The logic is then implemented to parse this data and update the Redux repository. Forms don't exist natively on React Native, so modals and Input/TextInput components are used for such purpose.</p>
+<p>Forms allow users to interact with the app. For this concrete example, a form is created for posting comments and ratings on trips. Forms in React are implemented in two ways: view and logic.</p>
+<p>As a view, form components are rendered in order to introduce data to the app. The logic is then implemented to parse this data and update the Redux repository when events on these components are fired. Forms don't exist natively on React Native, so Modals and Input/TextInput components are used for such purpose in addition to native features, such as <code>props</code>, <code>state</code> and <code>events</code>.</p>
+<h2 id="form-view">Form View</h2>
+<p>For rendering the form component, a <a href="https://reactnative.dev/docs/modal">Modal</a> from React Native is used as a container, along with <a href="https://reactnativeelements.com/docs/2.3.2/input">Input</a> components from React Native Elements to get user data. The <code>RenderForm</code> component renders the form component according to <code>props</code>.</p>
+<pre><code class="language-javascript">function RenderForm(props) {
+    return(
+        &lt;Modal
+            visible={props.visible}
+        &gt;
+            &lt;View&gt;
+                &lt;Rating/&gt;
+                ...
+                &lt;Input/&gt;
+                ...
+                &lt;Pressable
+                    onPress={() =&gt; props.onSubmit()}
+                /&gt;
+                &lt;Pressable
+                    onPress={() =&gt; props.onCancel()}
+                /&gt;
+            &lt;/View&gt;
+        &lt;/Modal&gt;
+    );
+}
+
+</code></pre>
+<h2 id="form-logic">Form Logic</h2>
+<p>As a Modal, the value of the visibility property is passed to the <code>RenderForm</code> component in <code>props</code> and saved in the <code>state</code> of the parent component <code>TripDetails</code>. A method in the parent component toggles the value of the visibility in order to show or hiden the form. In addition, values from the form inputs are saved in the <code>state</code>. Event callbacks are used to update the <code>state</code> of the parent component and update the Redux repository on form submit.</p>
+<pre><code class="language-javascript">class TripDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false,
+            rating: 3,
+            author: '',
+            comment: ''
+        }
+    }
+
+    toggleModal() {
+        ...
+    }
+
+    setComment = (comment) =&gt; {
+        ...
+    }
+
+    handleComment(tripId) {
+        ...
+    }
+
+    resetForm() {
+        ...
+    }
+
+    render() {
+        const { tripId } = this.props.route.params;
+        const { showModal } = this.state;
+
+        return (
+            &lt;ScrollView&gt;
+                &lt;RenderForm
+                    visible={showModal}
+                    onChange={...}
+                    onSubmit={() =&gt; {...}}
+                    onCancel={() =&gt; {...}}
+                /&gt;
+                ...
+                &lt;RenderTrip/&gt;
+                ...
+                &lt;RenderComments/&gt;
+            &lt;/ScrollView&gt;
+        );
+    }
+}
+
+</code></pre>
               
             </div>
           </div><footer>
